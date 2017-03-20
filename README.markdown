@@ -15,6 +15,15 @@ Adds the ability to have a custom caption for each field on the Publish interfac
 
 3. Save your fields as normal and dance!
 
+### Showing Captions on Focus
+
+You can show captions when field gets focus; the below is a template you can use to add settings.
+
+		###### CUSTOM_CAPTIONS ######
+		'custom_captions' => array(
+			'show-on-focus' => "yes"
+		),
+
 ## Credits
 
 Credit to **@ahwayakchih** for the implementation idea, and he doesn't even know it :)

@@ -32,7 +32,7 @@
 				CREATE TABLE IF NOT EXISTS tbl_customcaptions (
 					`field_id` INT(4) UNSIGNED DEFAULT NULL,
 					`section_id` INT(4) UNSIGNED DEFAULT NULL,
-					`caption` TINYTEXT DEFAULT NULL,
+					`caption` TEXT DEFAULT NULL,
 					PRIMARY KEY (`field_id`),
 					UNIQUE KEY field_id_section_id (`field_id`, `section_id`)
 				) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -49,12 +49,20 @@
 
 		private function addContextToPage(array $data = array()) {
 			if(!empty($data)) {
+
+				$customCaptionsConfig = Symphony::Configuration()->get('custom_captions');
+
+				$showOnFocus = $customCaptionsConfig['show-on-focus'] == 'yes' ? true : false;
+						
 				// Get current Captions and inject into Symphony Context
 				Administration::instance()->Page->addElementToHead(
 					new XMLElement(
 						'script',
-						"Symphony.Context.add('custom_captions', " . json_encode($data) . ");",
-						array('type' => 'text/javascript')
+						"Symphony.Context.add('custom_captions', " . json_encode($data) . ");" .
+						"Symphony.Context.add('custom_captions_focus', " . $showOnFocus . ");",
+						array(
+							'type' => 'text/javascript',
+						)
 					), 10000
 				);
 			}
