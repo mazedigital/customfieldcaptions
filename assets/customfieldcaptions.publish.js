@@ -21,8 +21,6 @@
 		$fields.each(function(i) {
 			var $field = $(this),
 				field_id = $field.attr('id').replace(/^field-/i, '');
-			var $images = $('div#field-31');
-			var $debate = $('div#field-86');
 
 			if(isNaN(parseInt(field_id)) || data[field_id].caption == undefined) return;
 
@@ -32,9 +30,6 @@
 			var fieldOnFocus = Symphony.Context.get('custom_captions_focus');
 			if (!fieldOnFocus){
 				$field.find('label > :input:last, label > .frame').before(template);
-			} else if ($images || $debate) {
-				$field.find('label > :input:last, label > .frame').before(template);
-				template.hide();
 			}else {
 				$field.find('label > :input:last, label > .frame').after(template);
 				template.hide();
