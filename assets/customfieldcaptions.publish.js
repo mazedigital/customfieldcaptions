@@ -37,7 +37,7 @@
 
 		});
 
-		$(document).on('focus','#contents div.field input, #contents div.field textarea',function(){
+		$(document).on('focus','#contents div.field select, #contents div.field input, #contents div.field textarea',function(){
 			$('.cc').hide();
 
 			var $field = $(this).closest('div.field');
